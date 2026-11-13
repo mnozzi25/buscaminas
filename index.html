@@ -17,6 +17,7 @@
     </header>
     <main class="principal">
       <section class="juego">
+        <p id="texto-jugador" class="texto-jugador"></p>
         <div class="barra-superior">
           <span id="contador-minas" class="display">010</span>
           <button id="boton-reiniciar" class="boton-carita" type="button">🙂</button>
@@ -28,5 +29,17 @@
     <footer class="pie">
       <a class="enlace-github" href="https://github.com/mnozzi25/buscaminas" target="_blank" rel="noopener noreferrer">Ver el código en GitHub</a>
     </footer>
+    <div id="modal-nombre" class="modal">
+      <div class="modal-contenido">
+        <h2 class="modal-titulo">¡Bienvenido!</h2>
+        <form id="formulario-nombre" class="formulario">
+          <label for="campo-nombre">Ingresá tu nombre para jugar</label>
+          <input id="campo-nombre" class="campo" type="text" autocomplete="off">
+          <p id="error-nombre" class="mensaje-error oculto"></p>
+          <button class="boton" type="submit">Jugar</button>
+        </form>
+      </div>
+    </div>
+    <script src="js/juego.js"></script>
   </body>
 </html>
