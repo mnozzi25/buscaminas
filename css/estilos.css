@@ -1,0 +1,97 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #1e2a38;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+.encabezado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: #14202c;
+}
+.titulo {
+  font-size: 2rem;
+}
+.navegacion {
+  display: flex;
+  gap: 1.5rem;
+}
+.enlace-nav {
+  color: #90caf9;
+  text-decoration: none;
+}
+.enlace-nav:hover {
+  text-decoration: underline;
+}
+.principal {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 1rem;
+}
+.juego {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 3px solid #7b7b7b;
+  background-color: #c0c0c0;
+}
+.barra-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border: 3px inset #ffffff;
+}
+.display {
+  width: 4.5rem;
+  padding: 0.25rem;
+  background-color: #000000;
+  color: #ff0000;
+  text-align: center;
+  font-family: "Courier New", monospace;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+.boton-carita {
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 3px outset #ffffff;
+  background-color: #c0c0c0;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.boton-carita:active {
+  border-style: inset;
+}
+.tablero {
+  display: flex;
+  flex-direction: column;
+  width: 16rem;
+  height: 16rem;
+  border: 3px inset #ffffff;
+  background-color: #bdbdbd;
+}
+.pie {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background-color: #14202c;
+}
+.enlace-github {
+  color: #90caf9;
+}
+@media (min-width: 768px) {
+  .encabezado {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+  }
+}
