@@ -69,9 +69,37 @@ var ubicarMinas = function () {
     }
   }
 };
+var esPosicionValida = function (fila, columna) {
+  return fila >= 0 && fila < cantidadFilas && columna >= 0 && columna < cantidadColumnas;
+};
+var contarMinasVecinas = function (fila, columna) {
+  var cantidad = 0;
+  var filaVecina;
+  var columnaVecina;
+  for (filaVecina = fila - 1; filaVecina <= fila + 1; filaVecina++) {
+    for (columnaVecina = columna - 1; columnaVecina <= columna + 1; columnaVecina++) {
+      if (esPosicionValida(filaVecina, columnaVecina) && estadoCeldas[filaVecina][columnaVecina].tieneMina) {
+        cantidad++;
+      }
+    }
+  }
+  return cantidad;
+};
+var calcularMinasVecinas = function () {
+  var fila;
+  var columna;
+  for (fila = 0; fila < cantidadFilas; fila++) {
+    for (columna = 0; columna < cantidadColumnas; columna++) {
+      if (!estadoCeldas[fila][columna].tieneMina) {
+        estadoCeldas[fila][columna].minasVecinas = contarMinasVecinas(fila, columna);
+      }
+    }
+  }
+};
 var iniciarPartida = function () {
   crearTablero();
   ubicarMinas();
+  calcularMinasVecinas();
 };
 var validarNombre = function (nombre) {
   var soloLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/;
