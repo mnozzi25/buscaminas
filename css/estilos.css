@@ -79,10 +79,24 @@ body {
 .tablero {
   display: flex;
   flex-direction: column;
-  width: 16rem;
-  height: 16rem;
+  align-self: center;
   border: 3px inset #ffffff;
   background-color: #bdbdbd;
+}
+.fila {
+  display: flex;
+}
+.celda {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 3px outset #ffffff;
+  background-color: #c0c0c0;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
 }
 .pie {
   display: flex;
