@@ -1,10 +1,48 @@
 "use strict";
+var cantidadFilas = 8;
+var cantidadColumnas = 8;
 var nombreJugador = "";
+var celdas = [];
 var modalNombre = document.getElementById("modal-nombre");
 var formularioNombre = document.getElementById("formulario-nombre");
 var campoNombre = document.getElementById("campo-nombre");
 var errorNombre = document.getElementById("error-nombre");
 var textoJugador = document.getElementById("texto-jugador");
+var contenedorTablero = document.getElementById("tablero");
+var vaciarTablero = function () {
+  while (contenedorTablero.firstChild) {
+    contenedorTablero.removeChild(contenedorTablero.firstChild);
+  }
+  celdas = [];
+};
+var crearCelda = function (fila, columna) {
+  var celda = document.createElement("div");
+  celda.className = "celda";
+  celda.setAttribute("data-fila", fila);
+  celda.setAttribute("data-columna", columna);
+  return celda;
+};
+var crearTablero = function () {
+  var fila;
+  var columna;
+  var elementoFila;
+  var celda;
+  vaciarTablero();
+  for (fila = 0; fila < cantidadFilas; fila++) {
+    elementoFila = document.createElement("div");
+    elementoFila.className = "fila";
+    celdas[fila] = [];
+    for (columna = 0; columna < cantidadColumnas; columna++) {
+      celda = crearCelda(fila, columna);
+      celdas[fila][columna] = celda;
+      elementoFila.appendChild(celda);
+    }
+    contenedorTablero.appendChild(elementoFila);
+  }
+};
+var iniciarPartida = function () {
+  crearTablero();
+};
 var validarNombre = function (nombre) {
   var soloLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/;
   var cantidadLetras = nombre.replace(/ /g, "").length;
@@ -29,6 +67,7 @@ var manejarEnvioNombre = function (evento) {
   nombreJugador = nombreIngresado;
   textoJugador.textContent = "Jugador: " + nombreJugador;
   ocultarModalNombre();
+  iniciarPartida();
 };
 formularioNombre.addEventListener("submit", manejarEnvioNombre);
 campoNombre.focus();
