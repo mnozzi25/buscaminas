@@ -1,8 +1,10 @@
 "use strict";
 var cantidadFilas = 8;
+var cantidadMinas = 10;
 var cantidadColumnas = 8;
 var nombreJugador = "";
 var celdas = [];
+var estadoCeldas = [];
 var modalNombre = document.getElementById("modal-nombre");
 var formularioNombre = document.getElementById("formulario-nombre");
 var campoNombre = document.getElementById("campo-nombre");
@@ -14,6 +16,7 @@ var vaciarTablero = function () {
     contenedorTablero.removeChild(contenedorTablero.firstChild);
   }
   celdas = [];
+  estadoCeldas = [];
 };
 var crearCelda = function (fila, columna) {
   var celda = document.createElement("div");
@@ -21,6 +24,14 @@ var crearCelda = function (fila, columna) {
   celda.setAttribute("data-fila", fila);
   celda.setAttribute("data-columna", columna);
   return celda;
+};
+var crearEstadoCelda = function () {
+  return {
+    tieneMina: false,
+    minasVecinas: 0,
+    revelada: false,
+    conBandera: false
+  };
 };
 var crearTablero = function () {
   var fila;
@@ -32,16 +43,35 @@ var crearTablero = function () {
     elementoFila = document.createElement("div");
     elementoFila.className = "fila";
     celdas[fila] = [];
+    estadoCeldas[fila] = [];
     for (columna = 0; columna < cantidadColumnas; columna++) {
       celda = crearCelda(fila, columna);
       celdas[fila][columna] = celda;
+      estadoCeldas[fila][columna] = crearEstadoCelda();
       elementoFila.appendChild(celda);
     }
     contenedorTablero.appendChild(elementoFila);
   }
 };
+var obtenerNumeroAleatorio = function (maximo) {
+  return Math.floor(Math.random() * maximo);
+};
+var ubicarMinas = function () {
+  var minasUbicadas = 0;
+  var fila;
+  var columna;
+  while (minasUbicadas < cantidadMinas) {
+    fila = obtenerNumeroAleatorio(cantidadFilas);
+    columna = obtenerNumeroAleatorio(cantidadColumnas);
+    if (!estadoCeldas[fila][columna].tieneMina) {
+      estadoCeldas[fila][columna].tieneMina = true;
+      minasUbicadas++;
+    }
+  }
+};
 var iniciarPartida = function () {
   crearTablero();
+  ubicarMinas();
 };
 var validarNombre = function (nombre) {
   var soloLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/;
